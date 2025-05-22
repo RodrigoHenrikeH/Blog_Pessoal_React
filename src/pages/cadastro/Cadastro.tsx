@@ -14,20 +14,14 @@ function Cadastro() {
 
   const [confirmaSenha, setConfirmaSenha] = useState<string>("")
 
-  const [usuario, setUsuario] = useState<Usuario>({
-    id: 0,
-    nome: '',
-    usuario: '',
-    senha: '',
-    foto: ''
-  })
+  const [usuario, setUsuario] = useState<Usuario>({} as Usuario)
 
   function retornar() {
     navigate('/login')
   }
 
   useEffect(() => {
-    if (usuario.id !== 0) {
+    if (usuario.id !== undefined) {
       retornar()
     }
   }, [usuario])
@@ -55,15 +49,7 @@ function Cadastro() {
 
       try {
         await cadastrarUsuario(
-          "/usuarios/cadastrar",
-          {
-            nome: usuario.nome,
-            usuario: usuario.usuario,
-            senha: usuario.senha,
-            foto: usuario.foto,
-          },
-          setUsuario
-        );
+          "/usuarios/cadastrar", usuario, setUsuario);
         
         alert('Usuário cadastrado com sucesso!')
       } catch (error) {
