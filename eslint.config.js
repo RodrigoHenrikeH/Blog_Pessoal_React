@@ -29,7 +29,8 @@ export default tseslint.config(
       "@eslint-disable-next-line react-hooks/exhaustive-deps": "off",
       "@typescript-eslint/no-wrapper-object-types": "off",
       "@typescript-eslint/no-unsafe-function-types": "off",
-
+      "@typescript-eslint/no-unsafe-function-types": "off",
+      "@typescript-eslint-disable react-hooks/exhaustive-deps": "off",
     },
   },
 )
