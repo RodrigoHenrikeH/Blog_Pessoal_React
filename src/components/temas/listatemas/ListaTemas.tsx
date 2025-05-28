@@ -12,6 +12,7 @@ function ListaTemas() {
     const navigate = useNavigate();
 
     const [temas, setTemas] = useState<Tema[]>([]);
+    const [temasOrdenados, setTemasOrdenados] = useState<Tema[]>([]);
 
     const { usuario, handleLogout } = useContext(AuthContext)
 
@@ -22,7 +23,7 @@ function ListaTemas() {
             await buscar('/temas', setTemas, { headers: { Authorization: token } })
 
         } catch (error: any) {
-            if (error.toString().includes("403", "401")) {
+            if (error.toString().includes("403")) {
                 handleLogout()
             }
         }
@@ -36,8 +37,14 @@ function ListaTemas() {
     }, [token])
 
     useEffect(() => {
-        buscarTemas()    
+        buscarTemas()
     }, [temas.length])
+
+
+    useEffect(() => {
+        const ordenados = [...temas].sort((a, b) => a.id - b.id);
+        setTemasOrdenados(ordenados);
+    }, [temas]);
 
 
     return (
