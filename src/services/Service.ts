@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://blogpessoal-5edl.onrender.com"
+    baseURL: import.meta.env.VITE_API_URL
 })
 
 
