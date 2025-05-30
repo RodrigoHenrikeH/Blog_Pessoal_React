@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useNavigate } from "react-router-dom";
 import CardTemas from "../cardtemas/CardTemas"
 import { useContext, useEffect, useState } from "react";
@@ -13,7 +13,7 @@ function ListaTemas() {
     const navigate = useNavigate();
 
     const [temas, setTemas] = useState<Tema[]>([]);
-    const [temasOrdenados, setTemasOrdenados] = useState<Tema[]>([]);
+
 
     const { usuario, handleLogout } = useContext(AuthContext)
 
@@ -35,18 +35,13 @@ function ListaTemas() {
             ToastAlerta('Você precisa estar logado!', "info")
             navigate('/')
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token])
 
     useEffect(() => {
         buscarTemas()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [temas.length])
-
-
-    useEffect(() => {
-        const ordenados = [...temas].sort((a, b) => a.id - b.id);
-        setTemasOrdenados(ordenados);
-    }, [temas]);
-
 
     return (
         <>
